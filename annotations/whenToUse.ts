@@ -51,12 +51,12 @@ colours.forEach(function(element) {
 const numbers = [-1, -10, 10];
 let numberAboveZero = false;
 
-numbers.forEach(element => {
-  if (element > 0) {
-    //Typescript has infered that numberAboveZero is a boolean!
-    numberAboveZero = element;
-  }
-});
+//    numbers.forEach(element => {
+//      if (element > 0) {
+//        //Typescript has infered that numberAboveZero is a boolean!
+//        numberAboveZero = element;
+//      }
+//    });
 
 //To fix, we can rewrite with an anotation that expresses this
 let numberAboveZeroAnnotated: boolean | number = false;

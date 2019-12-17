@@ -17,15 +17,12 @@ const person = {
 };
 
 //If we wanted to get the age off of the person object, using ES2015 syntax
-const { age } = person;
+//     const { age } = person;
 //To annotate this, we have to define out the object...
 const { age }: { age: number } = person;
 
 //To get location we would start with
-const {
-  location: { lat, lng }
-} = person;
-
+//     const { location: { lat, lng } } = person;
 //Then annotate it as such
 const {
   location: { lat, lng }
