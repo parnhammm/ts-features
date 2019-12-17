@@ -31,3 +31,49 @@ const addV4 = (a: number, b: number) => {
 const addV5 = (a: number, b: number): number => {
   a + b;
 };
+
+//Using function keyword
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+//Anonymous function
+const multiple = function(a: number, b: number): number {
+  return a * b;
+};
+
+//A function that doesn't return...
+const log = (message: string): void => {
+  console.log(message);
+};
+
+//A function that never returns... i.e throws an error
+const throwError = (message: string): never => {
+  throw new Error(message);
+};
+
+////////////////////////////////////////////////////////////////////////////////
+//Destructuring example
+////////////////////////////////////////////////////////////////////////////////
+const todaysWeather = {
+  date: new Date(),
+  weather: "sunny"
+};
+
+//using ES2015 syntax, we could do the following to get the properties off the object
+const logWeather = ({ date, weather }) => {
+  console.log(date);
+  console.log(weather);
+};
+
+//to use type annotations, we would do the following
+const logWeatherAnnotated = ({
+  date,
+  weather
+}: {
+  date: Date;
+  weather: string;
+}) => {
+  console.log(date);
+  console.log(weather);
+};
