@@ -41,3 +41,27 @@ colours.forEach(function(element) {
     foundGreenAnnotated = true;
   }
 });
+
+////////////////////////////////////////////////////////////////
+// Scenario (3): Variable whose type cannot be inferred correctly
+////////////////////////////////////////////////////////////////
+
+//We want to loop over an array and if a number is above zero, assign it to
+//numberAboveZero, otherwise return false
+const numbers = [-1, -10, 10];
+let numberAboveZero = false;
+
+numbers.forEach(element => {
+  if (element > 0) {
+    //Typescript has infered that numberAboveZero is a boolean!
+    numberAboveZero = element;
+  }
+});
+
+//To fix, we can rewrite with an anotation that expresses this
+let numberAboveZeroAnnotated: boolean | number = false;
+numbers.forEach(element => {
+  if (element > 0) {
+    numberAboveZeroAnnotated = element;
+  }
+});
