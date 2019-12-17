@@ -28,9 +28,9 @@ const addV4 = (a: number, b: number) => {
 
 //However if we had explictly declared a return type, Typescript would throw an error when
 //we didn't return!
-const addV5 = (a: number, b: number): number => {
-  a + b;
-};
+//    const addV5 = (a: number, b: number): number => {
+//      a + b;
+//    };
 
 //Using function keyword
 function divide(a: number, b: number): number {
