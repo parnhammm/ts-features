@@ -33,22 +33,25 @@ printVehicleDetails(oldCivic);
 // (3) we would need to repeat this long annotation everytime we want to use it
 
 //Rewrite this using an interface
-interface Vehicle {
-  name: string;
-  year: number;
-  broken: boolean;
+interface Reportable {
+  summary(): string;
 }
 
 const newCivic = {
   name: "Civic",
   year: 2019,
-  broken: false
+  broken: false,
+  summary(): string {
+    return `
+      Name: ${this.name}
+      Year: ${this.year}
+      Broken: ${this.broken}
+    `;
+  }
 };
 
-const printVehicle = (vehicle: Vehicle): void => {
-  console.log(`
-      Name: ${vehicle.name}
-      Year: ${vehicle.year}
-      Broken: ${vehicle.broken}
-  `);
+const printReportableSummary = (reportable: Reportable): void => {
+  console.log(reportable.summary());
 };
+
+printReportableSummary(newCivic);
