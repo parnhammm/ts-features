@@ -29,6 +29,10 @@ class Vehicle {
 
 //Overriding...
 class Car extends Vehicle {
+  constructor(public numOfWheels = 4, status = "Running") {
+    super(status);
+  }
+
   drive(): void {
     console.log("Car driving...");
   }
