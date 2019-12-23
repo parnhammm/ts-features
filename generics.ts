@@ -62,3 +62,39 @@ function printItems<T>(arr: T[]): void {
 printItems<string>(["a", "b", "c"]);
 //Once again we could use type inference here...
 printItems(["a", "b", "c"]);
+
+//Generic constriants...
+class Truck {
+  print() {
+    console.log("I am a truck");
+  }
+}
+
+class House {
+  print() {
+    console.log("I am a house");
+  }
+}
+
+interface Printable {
+  print(): void;
+}
+
+function printHousesOrCars<T>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    //arr[i].print();
+    //Doesn't work as T is declared dynamically!
+  }
+}
+
+function printHousesOrCarsWithPrintable<T extends Printable>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].print();
+    //This now works as T is constrained to printable
+  }
+}
+
+//printHousesOrCarsWithPrintable<Car>([new Car()]);
+//Car does not implement Printable!
+
+printHousesOrCarsWithPrintable<Truck>([new Truck()]);
