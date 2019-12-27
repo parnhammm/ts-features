@@ -10,6 +10,7 @@
 //   * Decorators are applied when the code is ran, not when an instance is created
 ////////////////////////////////////////////////////////////////
 
+@classDecorator
 class Boat {
   //Property
   colour: string = "white";
@@ -29,6 +30,18 @@ class Boat {
   pilotWithDecorator(): void {
     throw new Error("bleh");
   }
+
+  methodWithArg(@parameterDecorator myString: string): void {
+    console.log(myString);
+  }
+}
+
+function classDecorator(constructor: Function) {
+  console.log(constructor);
+}
+
+function parameterDecorator(target: any, key: string, index: number) {
+  console.log(key, index);
 }
 
 function logError(target: any, key: string, desc: PropertyDescriptor): void {
