@@ -25,32 +25,35 @@ Reflect.defineMetadata("note", "more notes", plane, "colour");
 const propNote = Reflect.getMetadata("note", plane, "colour");
 
 //Classes with decorators...
-@printMetaData
+@controller
 class Plane {
   colour: string = "white";
 
-  @markFunction("abc123")
+  @get('/fly')
   fly(): void {
     console.log("Flying");
   }
 }
 
-function markFunction(secretInfo: string) {
+function get(path: string) {
   return function(target: Plane, key: string) {
-    Reflect.defineMetadata("secret", secretInfo, target, key);
+    Reflect.defineMetadata("path", path, target, key);
   };
 }
 
 //Get the data using prototype
-const secret = Reflect.getMetadata("secret", Plane.prototype, "fly");
-console.log(`Secret is ${secret}`);
+const path = Reflect.getMetadata("path", Plane.prototype, "fly");
+console.log(`Path is ${path}`);
 
 //Class annotations refer to the constructor of the object...
-function printMetaData(target: typeof Plane) {
+function controller(target: typeof Plane) {
   for (let key in target.prototype) {
     //Iterate through all the keys on the prototype and
     //see if we can find the secret metadata
-    const secret = Reflect.getMetadata("secret", target.prototype, key);
-    console.log(`Secret is ${secret}`);
+    const path = Reflect.getMetadata("path", target.prototype, key);
+    console.log(`Path is ${path}`);
+
+    //If we where using express, we could then do something like
+    //router.get(path, target.prototype[key]);
   }
 }
